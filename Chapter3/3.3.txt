@@ -1,0 +1,6 @@
+Exercise 3.3: Explain how whitespace characters are handled in the string input operator and in the getline function.
+
+whitespace characters are treated as a separator between inputs according to the input operator, and in the getline function the whitespace
+does not indicate the end of the string the \n character indicates the end of the string. 
+
+

@@ -1,0 +1,14 @@
+Exercise 3.13: How many elements are there in each of the following vectors? What
+are the values of the elements?
+(a) vector<int> v1; (b) vector<int> v2(10);
+(c) vector<int> v3(10, 42); (d) vector<int> v4{10};
+(e) vector<int> v5{10, 42}; (f) vector<string> v6{10};
+(g) vector<string> v7{10, "hi"};
+
+a) v1 has 0 elements
+b) v2 has 10 elements all initialized to 0
+c) v3 has 10 elements all initialized to 42
+d) v4 has 1 element initialized to 10
+e) v5 has 2 elements initialized to 10, 42
+f) v6 has 10 elements which are all initialized as empty strings
+g) v7 has 10 elements all initialized to "hi" 

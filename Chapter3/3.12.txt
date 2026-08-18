@@ -1,0 +1,10 @@
+Exercise 3.12: Which, if any, of the following vector definitions are in error? For
+those that are legal, explain what the definition does. For those that are not legal,
+explain why they are illegal.
+(a) vector<vector<int>> ivec;
+(b) vector<string> svec = ivec;
+(c) vector<string> svec(10, "null");
+
+a) legal, ivec is a vector that stores vectors of type int
+b) illegal since svec is a vector of type string and ivec holds a different type
+c) svec has 10 elements initialized to "null" 

@@ -1,0 +1,8 @@
+Exercise 3.19: List three ways to define a vector and give it ten elements, each with
+the value 42. Indicate whether there is a preferred way to do so and why.
+
+1. std::vector<int> v1(10, 42);
+2. std::vector<int> v2 = {42, 42, 42, 42, 42, 42, 42, 42, 42, 42};
+3. std::vector<int> v3(v1);
+
+method 1 is preferred since it involves not typing each element individually, it just takes in the size and elements as parameters

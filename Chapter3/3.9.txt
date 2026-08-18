@@ -1,0 +1,6 @@
+Exercise 3.9: What does the following program do? Is it valid? If not, why not?
+string s;
+cout << s[0] << endl;
+
+this is undefined behaviour since s is an empty string and s[0] attempts to access index 0 but there is no index 0, 
+so there is no guarantee what will happen

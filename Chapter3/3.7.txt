@@ -1,0 +1,4 @@
+What would happen if you define the loop control variable in the previous exercise as type char? Predict the results and then change your program to use a
+char to see if you were right.
+
+if I use a loop control variable of type char it would not change the char at index i in the string since it is not referenced, if it was a reference to char then it would work
