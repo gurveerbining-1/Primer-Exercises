@@ -26,7 +26,7 @@ The exercises cover topics including:
 Exercises are organized by chapter:
 
 ```text
-cpp-primer/
+C++ Primer Exercises/
 ├── Chapter1/
 ├── Chapter2/
 ├── Chapter3/
