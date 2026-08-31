@@ -1,0 +1,8 @@
+We did not make the constructor that takes an initializer_list
+explicit (§ 7.5.4, p. 296). Discuss the pros and cons of this design choice.
+
+The advantage of not making the initializer_list constructor explicit is that it allows convenient implicit conversions from an initializer list to a StrBlob. 
+This makes it easy to initialize a StrBlob using brace-enclosed lists of strings.
+
+The disadvantage is that C++ may implicitly convert an initializer list to a StrBlob when we did not explicitly intend it to.
+This can make the code less clear and can lead to unintended conversions. Making the constructor explicit would prevent these implicit conversions.

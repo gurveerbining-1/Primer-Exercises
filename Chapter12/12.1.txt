@@ -1,0 +1,10 @@
+Exercise 12.1: How many elements do b1 and b2 have at the end of this code?
+StrBlob b1;
+{
+StrBlob b2 = {"a", "an", "the"};
+b1 = b2;
+b2.push_back("about");
+}
+
+b1 has 4 elements, b1 = b2 makes it so that b1 refers to the same vector as b2 and when b2.push_back() is called that element is also added to b1
+when b2 gets destroyed at the end of the block b1 still owns the shared vector 

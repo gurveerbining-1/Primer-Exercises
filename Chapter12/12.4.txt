@@ -1,0 +1,4 @@
+ In our check function we didn’t check whether i was greater than
+zero. Why is it okay to omit that check?
+
+This is okay to omit because we just need to ensure that the container is not empty. So long as the container is not empty we can perform operations on it. Also i is of type size_type so it is unsigned and can never be negative.
