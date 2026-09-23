@@ -1,0 +1,6 @@
+What would happen if we called process as follows?
+process(shared_ptr<int>(p.get()));
+
+a new shared pointer is initalized with the underlying raw pointer p and is destroyed at the end of processes scope but the original pointer p
+still thinks it owns that data and needs be destroyed as well since these two pointers do not know about each other (p.get() does not transfer ownership) and since 
+this data was freed at the end of process p is now a dangling pointer.

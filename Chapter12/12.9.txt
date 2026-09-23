@@ -4,3 +4,8 @@ r = q;
 auto q2 = make_shared<int>(42), r2 = make_shared<int>(100);
 r2 = q2;
 
+q is a pointer to int with the value of 42 declared with the new keyword and r is also a pointer to int with the value of 100 declared with the new keyword
+r is made equal to q which means that they now share the same address (pointing to the value of 42) but there is a memory leak since the old address of r was not de allocated, q2 is a shared pointer with the value of 42 and r2 is also a shared pointer
+with the value of 100, r2 is made equal to q2 so now the address of r2 is the same as q2 (they share this address which points to the value 42).
+Both of these do the same thing but q and r use the outdated way and make use of the new keyword which can cause a lot of issues if not properly managed and freed whereas the
+example with r2 and q2 use shared pointers which is the standard way and is safer since smart pointers dont need implicit deletion (they clean themselves up)

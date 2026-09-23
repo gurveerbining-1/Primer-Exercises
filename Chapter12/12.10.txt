@@ -1,0 +1,15 @@
+Explain whether the following call to the process function defined
+on page 464 is correct. If not, how would you correct the call?
+shared_ptr<int> p(new int(42));
+process(shared_ptr<int>(p));
+
+// ptr is created and initialized when process is called
+void process(shared_ptr<int> ptr)
+{
+// use ptr
+} // ptr goes out of scope and is destroyed
+
+shared_ptr<int> p(new int(42)); this is correct and can be passed into process since p is an initalized shared_ptr, but calling
+process(shared_ptr<int>(p)); is unnecessary because another shared_ptr initalized with p is being created and passed into process, once process is finished
+the copy is destroyed
+
