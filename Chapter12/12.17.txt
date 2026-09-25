@@ -1,0 +1,15 @@
+Which of the following unique_ptr declarations are illegal or likely
+to result in subsequent program error? Explain what the problem is with each one.
+
+int ix = 1024, *pi = &ix, *pi2 = new int(2048);
+typedef unique_ptr<int> IntP;
+
+(a) IntP p0(ix);	 	(b) IntP p1(pi);
+(c) IntP p2(pi2); 		(d) IntP p3(&ix);
+(e) IntP p4(new int(2048)); 	(f) IntP p5(p2.get());
+
+(a) This will result in an error since make_unique or new int(ix) is not used to initalize, the constructor of std::unique_ptr<T> expects a raw pointer to a memory address (example: int*) NOT int (like how ix is equal to 1023 not an address pointing to 1024)
+
+(b) This is legal since pi is a pointer that holds the address of the variable ix (which is an int with the value 1024), but will likely result in an error since pi points to a variable stored on the stack, when p1 goes out of scope it will attempt to use delete but you can't use delete on an object stored on the stack which results in undefined behaviour, smart pointers should only manage heap-allocated memory.
+
+(c) This is legal since pi2 is pointing to a heap allocated object with value 2048, this is exactly what unique_ptr<int> expects, but this will likely result in a dangling pointer if pi2 is later accessed or a double free if delete pi2 is called, to fix this just declare IntP p1(new int(2048)); instead of having unnecessarily having *pi2 point to the same object. This is also the old fashioned way of declaring a unique_ptr, the modern way of using std::make_unique is better practice.
