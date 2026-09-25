@@ -1,0 +1,28 @@
+Using the declarations of p and sp explain each of the following calls
+to process. If the call is legal, explain what it does. If the call is illegal, explain why:
+auto p = new int();
+auto sp = make_shared<int>();
+(a) process(sp);
+(b) process(new int());
+(c) process(p);
+(d) process(shared_ptr<int>(p));
+
+// ptr is created and initialized when process is called
+void process(shared_ptr<int> ptr)
+{
+// use ptr
+} // ptr goes out of scope and is destroyed
+
+a)  this is legal, sp is an initalized shared_ptr that points to an int which is what 
+    process() is expecting as a parameter, once the shared_ptr in the function is destroyed at the end of the function scope,
+    sp still exists and is not a dangling pointer since the function accepted the shared_ptr parameter as a pass by value
+
+b)  this is illegal since the function is expecting a shared_ptr<int> and not a raw pointer so the program would not compile, 
+    and if it could compile this will lead to a memory leak as well since the data stored in the raw pointer will not be freed 
+    by the end of the function scope
+
+c)  this is illegal, for the same reasons that (b) is illegal
+
+d)  this is legal but bad practice (don't share ownership between smart and raw pointers), a new shared_ptr is created and initalized with p and since p is a raw pointer
+    the smart pointer and the raw pointer both have ownership of the same data but do not know about each other, at the end of process() when the smart pointer gets destroyed and its memory is freed,
+    p still believes that it has ownership of this data that no longer exists which makes p a dangling pointer.

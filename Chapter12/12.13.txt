@@ -1,0 +1,8 @@
+Exercise 12.13: What happens if we execute the following code?
+auto sp = make_shared<int>();
+auto p = sp.get();
+delete p;
+
+sp is a shared_ptr that points to a dynamically allocated int with value 0, p is set equal to sp.get() (the underlying raw pointer of sp)
+so p is a raw pointer that does not know about the shared_ptr sp despite them both pointing to the same data. When delete p is called the shared_ptr sp
+still points to the address of the deleted object since its underlying raw pointer was deleted without it's knowledge and sp now becomes a dangling pointer. 
