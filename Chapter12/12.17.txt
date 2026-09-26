@@ -13,3 +13,9 @@ typedef unique_ptr<int> IntP;
 (b) This is legal since pi is a pointer that holds the address of the variable ix (which is an int with the value 1024), but will likely result in an error since pi points to a variable stored on the stack, when p1 goes out of scope it will attempt to use delete but you can't use delete on an object stored on the stack which results in undefined behaviour, smart pointers should only manage heap-allocated memory.
 
 (c) This is legal since pi2 is pointing to a heap allocated object with value 2048, this is exactly what unique_ptr<int> expects, but this will likely result in a dangling pointer if pi2 is later accessed or a double free if delete pi2 is called, to fix this just declare IntP p1(new int(2048)); instead of having unnecessarily having *pi2 point to the same object. This is also the old fashioned way of declaring a unique_ptr, the modern way of using std::make_unique is better practice.
+
+(d) This is legal but will likely result in an error since ix is a variable stored on the stack and passing its address can work since std::unique_ptr<T> expects a raw pointer to a memory address but the issue is that std::unique_ptr<T> destructor will attempt to use delete on this object once p3 goes out of scopebut the issue is that you can't use delete on stack allocated objects (this is undefined behaviour, and the program will likely crash).
+
+(e) This is legal and is correct, the std::unique_ptr<int> p4 is initialized with a pointer to a heap allocated int with value 2048. This is exactly what is expected and when the destructor is called (once p4 goes out of scope) the object will be deleted.
+
+(f) This is illegal since p2 and p5 both believe they own the same heap allocated object, when they are both destroyed they will attempt to delete the same pointer which is undefined behaviour, the correct way to transfer ownership is with std::move(p2);
