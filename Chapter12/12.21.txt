@@ -1,0 +1,8 @@
+We could have written StrBlobPtr’s deref member as follows:
+std::string& deref() const
+{ return (*check(curr, "dereference past end"))[curr]; }
+Which version do you think is better and why?
+
+I think that this was is good since there is no unnecessary creation of the local variable ptr, but 
+it can be a bit hard to read. I would prefer the way in 12.19 just because it is easier to read, but I understand why
+others would want to write it this way (avoids creating variables that we don't need)
