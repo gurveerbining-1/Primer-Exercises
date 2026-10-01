@@ -1,0 +1,6 @@
+Given the following new expression, how would you delete pa?
+int *pa = new int[10];
+
+I would delete pa by calling delete [] pa; if delete pa; is used instead then 
+it results in undefined behaviour since it incorrectly 
+treats the pointer as a single object instead of an array.
