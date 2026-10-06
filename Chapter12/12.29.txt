@@ -1,0 +1,4 @@
+I prefer the do while version for this program because the user should 
+normally be given the opportunity to enter a query at least once. 
+A do while loop makes this intention clear because the query is performed before the condition is checked. 
+It also keeps the interaction and the condition for continuing together, making the program easier to read.

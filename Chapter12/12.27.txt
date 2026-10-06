@@ -1,0 +1,40 @@
+allocators Allocate Unconstructed Memory
+The memory an allocator allocates is unconstructed. We use this memory by
+constructing objects in that memory. In the new library the construct member
+takes a pointer and zero or more additional arguments; it constructs an element
+at the given location. The additional arguments are used to initialize the object
+being constructed. Like the arguments to make_shared (§ 12.1.1, p. 451), these
+additional arguments must be valid initializers for an object of the type being constructed. In particular, if the , object is a class type, these arguments must match a
+constructor for that class:
+auto q = p; // q will point to one past the last constructed element
+alloc.construct(q++); // *q is the empty string
+alloc.construct(q++, 10, ’c’); // *q is cccccccccc
+alloc.construct(q++, "hi"); // *q is hi!
+In earlier versions of the library, construct took only two arguments: the pointer
+at which to construct an object and a value of the element type. As a result, we
+could only copy an element into unconstructed space, we could not use any other
+constructor for the element type.
+It is an error to use raw memory in which an object has not been constructed:
+cout << *p << endl; // ok: uses the string output operator
+cout << *q << endl; // disaster: q points to unconstructed memory!
+We must construct objects in order to use memory returned by
+allocate. Using unconstructed memory in other ways is undefined.
+When we’re finished using the objects, we must destroy the elements we constructed, which we do by calling destroy on each constructed element. The
+destroy function takes a pointer and runs the destructor (§ 12.1.1, p. 452) on the
+pointed-to object:
+At the beginning of our loop, q points one past the last constructed element. We
+decrement q before calling destroy. Thus, on the first call to destroy, q points
+to the last constructed element. We destroy the first element in the last iteration,
+after which q will equal p and the loop ends.
+We may destroy only elements that are actually constructed.
+Once the elements have been destroyed, we can either reuse the memory to
+hold other strings or return the memory to the system. We free the memory by
+calling deallocate:
+alloc.deallocate(p, n);
+The pointer we pass to deallocate cannot be null; it must point to memory allocated by allocate. Moreover, the size argument passed to deallocate must be
+the same size as used in the call to allocate that obtained the memory to which
+the pointer points.
+Algorithms to Copy and Fill Uninitialized Memory
+As a companion to the allocator class, the library also defines two algorithms
+that can construct objects in uninitialized memory. These functions, described in
+Table 12.8, are defined in the memory header.
