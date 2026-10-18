@@ -1,0 +1,7 @@
+What is a copy constructor? When is it used?
+
+A copy constructor initalizes a newly created object by using an existing object. The copy constructor takes in a reference to the class type as a parameter followed by any other parameters. It is used in threescenarios:
+
+1. Direct or copy initalization (when a new object is initalized from an existing one)
+2. Passing by value (when an object is passed as an argument to a function by value)
+3. Returning by value (when a function returns an object by value)

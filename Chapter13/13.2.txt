@@ -1,0 +1,4 @@
+Explain why the following declaration is illegal:
+Sales_data::Sales_data(Sales_data rhs);
+
+it is illegal because it does not take a reference to Sales_data which is a requirement for a copy constructor (ideally it should also be const). Also if you try to pass by value and not reference for a copy constructor it creates an infinite loop of constructor calls.
