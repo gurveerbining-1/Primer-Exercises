@@ -1,0 +1,4 @@
+What is a copy-assignment operator? When is this operator used?
+What does the synthesized copy-assignment operator do? When is it synthesized?
+
+A copy-assignment operator is a special member function of a class that overloads the = operator, this isused when there is already an existing object and that object is reassigned using copy assignment (not to be confused with copy initalization since the object is already initalized), if a copy-assignment operator is not defined the compiler synthesizes its own, the copy assignment operator also returns a reference to the object that is being assigned. It performs a shallow copy of each non static data member from the source object into the destination object, if the class manages raw dynamic pointers, a shallow copy can lead to double free or dangling pointers.

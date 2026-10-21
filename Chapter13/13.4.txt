@@ -1,0 +1,12 @@
+Assuming Point is a class type with a public copy constructor, identify each use of the copy constructor in this program fragment:
+
+Point global;
+Point foo_bar(Point arg)
+{
+Point local = arg, *heap = new Point(global);
+*heap = local;
+Point pa[ 4 ] = { local, *heap };
+return *heap;
+}
+
+The declaration of the global variable of type Point (literally called global) does not use the copy constructor as there is no initalization of the variable, the copy constructor for Point is called when the parameter arg is passed into the function foo_bar and the variable local also calls the copy constructor for Point since it is initalized with copy initalization. The pointer pointer to type Point (named heap) creates a heap allocated Point object that is a deep copy of global which results in the copy constructor being called, when heap is dereferenced and set equal to local the copy constructor is not called since heap already refers to an initalized Point object (the copy assignment operator is called instead),after this p[0] and p[1] call the copy constructor for a total of 2 more calls to the copy constructor, and finally when the function returns the dereferenced heap it returns a copy so once again the copy constructor is called. This results in a total of 6 calls to the copy constructor.

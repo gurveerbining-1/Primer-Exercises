@@ -1,0 +1,4 @@
+What happens when we assign one StrBlob to another? What about
+StrBlobPtrs?
+
+when we assign a StrBlob to another the synthesized copy assignment operator is called and copies all non static data members into the left hand StrBlob and returns its reference (*this). This includes the shared_ptr and this new StrBlob object's shared_ptr points to the same underlying vector. The same thing for the StrBlobPtrs but with the weak_ptr, both weak_ptr's share the same data.
