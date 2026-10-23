@@ -1,0 +1,4 @@
+What happens when a StrBlob object is destroyed? What about a
+StrBlobPtr?
+
+When a StrBlob object is destroyed its destructor is called which destroys all its members in reverse order from which they were declared, this includes the shared_ptr which gets destroyed via its own destructor (smart pointers have destructors which is the main reason that makes them "smart") which results in a decrease in the reference count. This goes for the StrBlobPtr too which includes its weak_ptr member variable that is destroyed (without changing the reference count).

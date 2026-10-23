@@ -1,0 +1,9 @@
+How many destructor calls occur in the following code fragment?
+
+bool fcn(const Sales_data *trans, Sales_data accum)
+{
+	Sales_data item1(*trans), item2(accum);
+	return item1.isbn() != item2.isbn();
+}
+
+There are three destructor calls in the code fragment, this is because there are three Sales_data objects declared: accumC (passed by value as a parameter so the function creates a copy of it), item1, and item2, at the end of the function scope the destructors for item2, item1, and accum are called in that order because destructors are called in reverse order from when objects were declared.
