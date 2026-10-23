@@ -1,0 +1,4 @@
+What is a destructor? What does the synthesized destructor do? When
+is a destructor synthesized?
+
+A destructor is a special member function that is responsible for cleaning up and destroying the non static data members of an object, destructors destroy these members in reverse order from when they were initalized, a destructor is denoted with ~, takes in no parameters and has no return type. The compiler synthesizes its own destructor if there is no user defined one.
