@@ -1,0 +1,4 @@
+What if the parameter in f were const numbered&? Does that
+change the output? If so, why? What output gets generated?
+
+yes this is correct and exactly what we want, the main issue with the last question was that f() takes in the object by value and not by reference and the fact that we don't want to create another copy of the object is exactly why we use passing by reference and making it const is good as well since each object has that unique serial number for the entirety of its lifetime and it does not change.

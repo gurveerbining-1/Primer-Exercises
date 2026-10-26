@@ -1,0 +1,5 @@
+Assume numbered has a copy constructor that generates a new serial
+number. Does that change the output of the calls in the previous exercise? If so, why?
+What output gets generated?
+
+yes that changes the output of the function calls because now a, b, and c all correctly generate unique serial numbers correctly when copy initilization is used, the issue however is that when f(a), f(b), and f(c) are each called the copy constructor is called again because the parameters are passed by value and not by reference which results in the serial numbers being generated again which is not the correct behaviour we want.
